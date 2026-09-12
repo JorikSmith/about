@@ -162,10 +162,10 @@ down-arrow svg:hover {
 }
 
 main {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 950px;
   --opacity: calc(var(--scroll-y-percent) / .15);
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 60px;
   margin-top: max(0px, calc(-140vh * var(--scroll-y-percent) + 35vh));
   margin-bottom: calc(35vh - max(0px, calc(-140vh * var(--scroll-y-percent) + 35vh)));
 }
@@ -174,7 +174,6 @@ bento-grid {
   --template-columns: 8;
   display: grid;
   grid-template-columns: repeat(var(--template-columns), 1fr);
-  grid-column: span 8;
   gap: 40px;
 }
 
@@ -231,17 +230,8 @@ widget-content {
   display: flex;
   flex-direction: column;
 }
-/*костыль №4*/
-#model-container {
-  max-width: 100%;
-  height: 458px;
-  overflow: hidden;
-  border-radius: 10px;
-}
-/*костыль №5*/
-model-viewer {
-  width: auto;
-  height: 100%;
+widget-card-model canvas {
+  display: block;
 }
 
 widget-icon {
@@ -307,30 +297,6 @@ widget-card[style*='--rows: 1;'] widget-meta {
 .widget-description {
   opacity: .7;
   font-size: .9em;
-}
-
-widget-image {
-  aspect-ratio: 1.4;
-  margin-left: 1.5rem;
-  border-radius: 10px;
-  background: var(--bg) center/cover no-repeat;
-  height: 100%;
-  overflow: hidden;
-}
-
-.widget-image-only {
-  box-sizing: border-box;
-  background-color: var(--bg-color);
-  padding: var(--padding);
-  width: 100%;
-  height: 100%;
-}
-
-widget-image-only {
-  border-radius: 10px;
-  background: var(--bg) center/contain no-repeat;
-  width: 100%;
-  height: 100%;
 }
 
 widget-clock {
@@ -429,29 +395,6 @@ clock-time {
   opacity: .8;
 }
 
-project-grid {
-  display: flex;
-  flex-direction: column;
-  grid-column: span 4;
-  gap: 20px;
-}
-
-@media (width < 1300px) {
-  main {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 950px;
-  }
-
-  project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (width < 880px) {
   main {
     margin-right: auto;
@@ -463,82 +406,6 @@ project-grid {
     --template-columns: 4;
     gap: 25px;
   }
-
-  widget-card[style*='--mobile-aspect-ratio'] {
-    aspect-ratio: var(--mobile-aspect-ratio);
-    height: unset;
-  }
-
-  widget-card[style*='--m-'] {
-    --c: min(var(--m-columns, 2), var(--template-columns));
-    --r: var(--m-rows, 2)
-  }
-
-  project-grid {
-    display: flex;
-  }
-}
-
-project-card {
-  transition: transform .15s linear 0s;
-  opacity: var(--opacity);
-  border-radius: 16px;
-  background: var(--card);
-  overflow: hidden;
-}
-
-project-card:active {
-  transform: perspective(300px) translateZ(-10px);
-}
-
-project-card a {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: flex-start;
-  padding: 15px 20px;
-  width: 100%;
-  height: 100%;
-  color: #000;
-}
-
-.project-title {
-  color: #06b;
-  font-size: 1.1em;
-  font-weight: 700;
-}
-
-.project-description {
-  opacity: .7;
-}
-
-project-meta {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  opacity: .7;
-  width: 100%;
-}
-
-project-meta>* {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  align-items: center;
-}
-
-project-language {
-  flex: 1;
-  justify-content: flex-end;
-}
-
-language-color {
-  aspect-ratio: 1/1;
-  margin-right: .1em;
-  border-radius: 50%;
-  width: .6em;
-  height: .6em;
 }
 
 background-filter {
@@ -574,55 +441,3 @@ body:not(.touch-device) background-filter {
   object-fit: cover;
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: -35vh;
-  height: 15vh;
-  font-size: 20px;
-}
-
-footer span {
-  transition: opacity .3s ease;
-  opacity: .65;
-  text-align: center;
-  line-height: 2;
-  color: #fff;
-}
-
-footer span:hover {
-  opacity: .8;
-}
-
-footer a {
-  transition: filter .3s ease;
-  color: var(--clock);
-  font-weight: 700;
-}
-
-footer a:hover {
-  filter: brightness(1.2);
-}
-
-#kb250 {
-  color: #7c4;
-}
-
-#kb512 {
-  color: #6bf;
-}
-
-#mb1 {
-  color: #c24;
-}
